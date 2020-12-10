@@ -12,13 +12,11 @@ namespace IRF_Project_JJEZ57
     using System;
     using System.Collections.Generic;
     
-    public partial class Auto
+    public partial class Termek
     {
         public int Id { get; set; }
         public string Nev { get; set; }
         public Nullable<int> Darab { get; set; }
-        public int SzinID { get; set; }
-    
-        public virtual Szin Szin { get; set; }
+        public Nullable<int> Egységár { get; set; }
     }
 }

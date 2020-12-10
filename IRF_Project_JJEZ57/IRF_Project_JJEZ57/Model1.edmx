@@ -4,107 +4,48 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CarsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Auto">
+    <Schema Namespace="CarsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Termek">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nev" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Darab" Type="int" />
-          <Property Name="SzinID" Type="int" Nullable="false" />
+          <Property Name="Egységár" Type="int" />
         </EntityType>
-        <EntityType Name="Szin">
-          <Key>
-            <PropertyRef Name="SzinID" />
-          </Key>
-          <Property Name="SzinID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nev" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Auto_ToSzin">
-          <End Role="Szin" Type="Self.Szin" Multiplicity="1" />
-          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Szin">
-              <PropertyRef Name="SzinID" />
-            </Principal>
-            <Dependent Role="Auto">
-              <PropertyRef Name="SzinID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="CarsModelStoreContainer">
-          <EntitySet Name="Auto" EntityType="Self.Auto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Szin" EntityType="Self.Szin" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Auto_ToSzin" Association="Self.FK_Auto_ToSzin">
-            <End Role="Szin" EntitySet="Szin" />
-            <End Role="Auto" EntitySet="Auto" />
-          </AssociationSet>
+          <EntitySet Name="Termek" EntityType="Self.Termek" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CarsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Auto">
+        <EntityContainer Name="CarsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Termek" EntityType="CarsModel.Termek" />
+        </EntityContainer>
+        <EntityType Name="Termek">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nev" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Darab" Type="Int32" />
-          <Property Name="SzinID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Szin" Relationship="Self.FK_Auto_ToSzin" FromRole="Auto" ToRole="Szin" />
+          <Property Name="Egységár" Type="Int32" />
         </EntityType>
-        <EntityType Name="Szin">
-          <Key>
-            <PropertyRef Name="SzinID" />
-          </Key>
-          <Property Name="SzinID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nev" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Auto" Relationship="Self.FK_Auto_ToSzin" FromRole="Szin" ToRole="Auto" />
-        </EntityType>
-        <Association Name="FK_Auto_ToSzin">
-          <End Role="Szin" Type="Self.Szin" Multiplicity="1" />
-          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Szin">
-              <PropertyRef Name="SzinID" />
-            </Principal>
-            <Dependent Role="Auto">
-              <PropertyRef Name="SzinID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="CarsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Auto" EntityType="Self.Auto" />
-          <EntitySet Name="Szin" EntityType="Self.Szin" />
-          <AssociationSet Name="FK_Auto_ToSzin" Association="Self.FK_Auto_ToSzin">
-            <End Role="Szin" EntitySet="Szin" />
-            <End Role="Auto" EntitySet="Auto" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CarsModelStoreContainer" CdmEntityContainer="CarsEntities">
-          <EntitySetMapping Name="Auto">
-            <EntityTypeMapping TypeName="CarsModel.Auto">
-              <MappingFragment StoreEntitySet="Auto">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nev" ColumnName="Nev" />
+        <EntityContainerMapping StorageEntityContainer="CarsModelStoreContainer" CdmEntityContainer="CarsEntities1">
+          <EntitySetMapping Name="Termek">
+            <EntityTypeMapping TypeName="CarsModel.Termek">
+              <MappingFragment StoreEntitySet="Termek">
+                <ScalarProperty Name="Egységár" ColumnName="Egységár" />
                 <ScalarProperty Name="Darab" ColumnName="Darab" />
-                <ScalarProperty Name="SzinID" ColumnName="SzinID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Szin">
-            <EntityTypeMapping TypeName="CarsModel.Szin">
-              <MappingFragment StoreEntitySet="Szin">
-                <ScalarProperty Name="SzinID" ColumnName="SzinID" />
                 <ScalarProperty Name="Nev" ColumnName="Nev" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

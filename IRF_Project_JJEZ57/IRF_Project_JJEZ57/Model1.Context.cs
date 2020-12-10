@@ -13,10 +13,10 @@ namespace IRF_Project_JJEZ57
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CarsEntities : DbContext
+    public partial class CarsEntities1 : DbContext
     {
-        public CarsEntities()
-            : base("name=CarsEntities")
+        public CarsEntities1()
+            : base("name=CarsEntities1")
         {
         }
     
@@ -25,7 +25,6 @@ namespace IRF_Project_JJEZ57
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Auto> Auto { get; set; }
-        public virtual DbSet<Szin> Szin { get; set; }
+        public virtual DbSet<Termek> Termek { get; set; }
     }
 }

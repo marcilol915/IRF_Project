@@ -4,10 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24adbb9c2d5f475987167dfc5a4a4e88" Name="Diagram1">
-        <EntityTypeShape EntityType="CarsModel.Auto" Width="1.5" PointX="4.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarsModel.Szin" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="CarsModel.FK_Auto_ToSzin" ManuallyRouted="false" />
+      <Diagram DiagramId="a8076ae29cd04f7e98a89a718b04b1b4" Name="Diagram1">
+        <EntityTypeShape EntityType="CarsModel.Termek" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
