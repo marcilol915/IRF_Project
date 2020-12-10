@@ -26,6 +26,7 @@ namespace IRF_Project_JJEZ57.Entities
         protected void DrawImage(Graphics g)
         {
             g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
+            g.FillEllipse(new SolidBrush(Color.Black), Width/4, Height/4, Width/2, Height/2);
         }
         public void MoveWheel()
         {
