@@ -10,6 +10,12 @@ namespace IRF_Project_JJEZ57.Entities
 {
     public class Audi : Toy
     {
+        public Audi()
+        {
+            var img = Image.FromFile("Images/audi.jpg");
+            Width = img.Width / 4;
+            Height = img.Height / 4;
+        }
         protected override void DrawImage(Graphics g)
         {
             Image imageFile = Image.FromFile("Images/audi.jpg");

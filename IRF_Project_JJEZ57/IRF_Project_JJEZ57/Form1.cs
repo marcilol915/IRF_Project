@@ -24,7 +24,7 @@ namespace IRF_Project_JJEZ57
         public Form1()
         {
             InitializeComponent();
-            Production = new BmwProduction();
+            Production = new AudiProduction();
         }
 
         private void CreateTimer_Tick(object sender, EventArgs e)
@@ -51,6 +51,38 @@ namespace IRF_Project_JJEZ57
                 mainPanel.Controls.Remove(oldesttoy);
                 toys.Remove(oldesttoy);
             }
+        }
+
+        private void buttonWheel_Click(object sender, EventArgs e)
+        {
+            Production = new WheelProduction();
+        }
+
+        private void buttonAudi_Click(object sender, EventArgs e)
+        {
+            Production = new AudiProduction();
+        }
+
+        private void buttonBmw_Click(object sender, EventArgs e)
+        {
+            Production = new BmwProduction();
+        }
+
+        private void buttonMercedes_Click(object sender, EventArgs e)
+        {
+            Production = new MercedesProduction();
+        }
+
+        private void buttonColor_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+            Production = new WheelProduction
+            { WheelColor=buttonColor.BackColor};
         }
     }
 }
