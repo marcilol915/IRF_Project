@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace IRF_Project_JJEZ57.Entities
 {
-    public class WheelProduction:IToyFactory
+    class BmwProduction : IToyFactory
     {
-       
-
         public Toy CreateNew()
         {
-            return new Wheel();
+            return new BMW();
         }
     }
 }

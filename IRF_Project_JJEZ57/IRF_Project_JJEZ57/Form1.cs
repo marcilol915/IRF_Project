@@ -1,4 +1,5 @@
-﻿using IRF_Project_JJEZ57.Entities;
+﻿using IRF_Project_JJEZ57.Abstractions;
+using IRF_Project_JJEZ57.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,9 @@ namespace IRF_Project_JJEZ57
 {
     public partial class Form1 : Form
     {
-        private List<Wheel> wheels = new List<Wheel>();
-        private WheelProduction _production;
-        public WheelProduction Production
+        private List<Toy> toys = new List<Toy>();
+        private IToyFactory _production;
+        public IToyFactory Production
         {
             get { return _production; }
             set { _production = value; }
@@ -23,32 +24,32 @@ namespace IRF_Project_JJEZ57
         public Form1()
         {
             InitializeComponent();
-            Production = new WheelProduction();
+            Production = new BmwProduction();
         }
 
         private void CreateTimer_Tick(object sender, EventArgs e)
         {
-            var wheel = Production.Create();
-            wheels.Add(wheel);
-            wheel.Left = -wheel.Width;
-            mainPanel.Controls.Add(wheel);
+            var toy = Production.CreateNew();
+            toys.Add(toy);
+            toy.Left = -toy.Width;
+            mainPanel.Controls.Add(toy);
         }
 
         private void MoveTimer_Tick(object sender, EventArgs e)
         {
             var maxPosition = 0;
-            foreach (var wheel in wheels)
+            foreach (var wheel in toys)
             {
-                wheel.MoveWheel();
+                wheel.MoveToy();
                 if (wheel.Left > maxPosition)
                     maxPosition = wheel.Left;
             }
 
             if (maxPosition > 1000)
             {
-                var oldestWheel = wheels[0];
-                mainPanel.Controls.Remove(oldestWheel);
-                wheels.Remove(oldestWheel);
+                var oldesttoy = toys[0];
+                mainPanel.Controls.Remove(oldesttoy);
+                toys.Remove(oldesttoy);
             }
         }
     }

@@ -70,12 +70,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IToyFactory.cs" />
     <Compile Include="Abstractions\Termek.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entities\BMW.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entities\BmwProduction.cs" />
     <Compile Include="Entities\Wheel.cs">
       <SubType>Component</SubType>
     </Compile>
