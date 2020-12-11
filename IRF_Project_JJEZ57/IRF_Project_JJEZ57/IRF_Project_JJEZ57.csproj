@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\Termek.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Entities\BMW.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Entities\Wheel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -150,6 +156,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Images\bmw.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
