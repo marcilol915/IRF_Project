@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -141,9 +142,13 @@ namespace IRF_Project_JJEZ57
         public Form1()
         {
             InitializeComponent();
+            
             Production =new AudiProduction();
             Keszletfrissites();
-            timerAudi.Enabled = true;
+            
+            MoveTimer.Enabled = false;
+            CreateTimer.Enabled = false;
+            mainPanel.Visible = false;
         }
 
         private void CreateTimer_Tick(object sender, EventArgs e)
@@ -174,7 +179,9 @@ namespace IRF_Project_JJEZ57
 
         private void buttonWheel_Click(object sender, EventArgs e)
         {
-            Production = new WheelProduction();
+            Production = new WheelProduction {WheelColor=Color.Gray };
+            CreateTimer.Enabled = true;
+            MoveTimer.Enabled = true;
             timerWheel.Enabled = true;
             timerMercedes.Enabled = false;
             timerBmw.Enabled = false;
@@ -184,6 +191,8 @@ namespace IRF_Project_JJEZ57
         private void buttonAudi_Click(object sender, EventArgs e)
         {
             Production = new AudiProduction();
+            CreateTimer.Enabled = true;
+            MoveTimer.Enabled = true;
             timerWheel.Enabled = false;
             timerMercedes.Enabled = false;
             timerBmw.Enabled = false;
@@ -193,6 +202,8 @@ namespace IRF_Project_JJEZ57
         private void buttonBmw_Click(object sender, EventArgs e)
         {
             Production = new BmwProduction();
+            CreateTimer.Enabled = true;
+            MoveTimer.Enabled = true;
             timerWheel.Enabled = false;
             timerMercedes.Enabled = false;
             timerBmw.Enabled = true;
@@ -202,6 +213,8 @@ namespace IRF_Project_JJEZ57
         private void buttonMercedes_Click(object sender, EventArgs e)
         {
             Production = new MercedesProduction();
+            CreateTimer.Enabled = true;
+            MoveTimer.Enabled = true;
             timerWheel.Enabled = false;
             timerMercedes.Enabled = true;
             timerBmw.Enabled = false;
@@ -283,6 +296,52 @@ namespace IRF_Project_JJEZ57
                     sw.Write(g.Darab*g.Egységár);
                     sw.WriteLine();
                 }
+            }
+        }
+
+        private void textBoxuser_TextChanged(object sender, EventArgs e)
+        {
+            this.Validate();
+        }
+
+        private void textBoxuser_Validating(object sender, CancelEventArgs e)
+        {
+            Regex r = new Regex("^[A-Za-z]{1,}(| [A-Za-z]{1,})$");
+            if (r.IsMatch(textBoxuser.Text))
+            {
+                e.Cancel = false;
+                textBoxuser.BackColor = Color.Green;
+                errorProvider1.SetError(textBoxuser, "");
+            }
+            else
+            {
+                errorProvider1.SetError(textBoxuser, "Nem tartalmazhat számot és max két részből áll!");
+                e.Cancel = true;
+                textBoxuser.BackColor = Color.Red;
+            }
+        }
+
+        private void textBoxpass_TextChanged(object sender, EventArgs e)
+        {
+            this.Validate();
+        }
+
+        private void textBoxpass_Validating(object sender, CancelEventArgs e)
+        {
+            Regex r = new Regex("^[0-9]{4}$");
+            if (r.IsMatch(textBoxpass.Text))
+            {
+                e.Cancel = false;
+                textBoxpass.BackColor = Color.Green;
+                errorProvider1.SetError(textBoxpass, "");
+                mainPanel.Visible = true;
+            }
+            else
+            {
+                errorProvider1.SetError(textBoxpass, "Négyjegyű szám legyen!");
+                e.Cancel = true;
+                textBoxpass.BackColor = Color.Red;
+
             }
         }
     }

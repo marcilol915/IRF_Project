@@ -44,8 +44,17 @@
             this.timerMercedes = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.buttonMentes = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxuser = new System.Windows.Forms.TextBox();
+            this.textBoxpass = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -53,6 +62,8 @@
             this.mainPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainPanel.Controls.Add(this.label2);
+            this.mainPanel.Controls.Add(this.label1);
             this.mainPanel.Controls.Add(this.buttonMentes);
             this.mainPanel.Controls.Add(this.button1);
             this.mainPanel.Controls.Add(this.dataGridView1);
@@ -63,12 +74,12 @@
             this.mainPanel.Controls.Add(this.buttonWheel);
             this.mainPanel.Location = new System.Drawing.Point(2, 12);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1098, 617);
+            this.mainPanel.Size = new System.Drawing.Size(1098, 432);
             this.mainPanel.TabIndex = 0;
             // 
             // buttonColor
             // 
-            this.buttonColor.Location = new System.Drawing.Point(152, 175);
+            this.buttonColor.Location = new System.Drawing.Point(201, 176);
             this.buttonColor.Name = "buttonColor";
             this.buttonColor.Size = new System.Drawing.Size(75, 23);
             this.buttonColor.TabIndex = 4;
@@ -177,17 +188,94 @@
             this.buttonMentes.UseVisualStyleBackColor = true;
             this.buttonMentes.Click += new System.EventHandler(this.buttonMentes_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(149, 138);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(185, 34);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Milyen színű legyen a gumi?\r\nKérem válasszon!\r\n";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 138);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 34);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Kérem\r\nválasszon terméket!";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(489, 533);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 17);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Név";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(415, 570);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 17);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Azonosító szám";
+            // 
+            // textBoxuser
+            // 
+            this.textBoxuser.Location = new System.Drawing.Point(528, 530);
+            this.textBoxuser.Name = "textBoxuser";
+            this.textBoxuser.Size = new System.Drawing.Size(100, 22);
+            this.textBoxuser.TabIndex = 12;
+            this.textBoxuser.TextChanged += new System.EventHandler(this.textBoxuser_TextChanged);
+            this.textBoxuser.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxuser_Validating);
+            // 
+            // textBoxpass
+            // 
+            this.textBoxpass.Location = new System.Drawing.Point(528, 565);
+            this.textBoxpass.Name = "textBoxpass";
+            this.textBoxpass.Size = new System.Drawing.Size(100, 22);
+            this.textBoxpass.TabIndex = 13;
+            this.textBoxpass.TextChanged += new System.EventHandler(this.textBoxpass_TextChanged);
+            this.textBoxpass.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxpass_Validating);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(476, 500);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(194, 17);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Belépéshez adja meg adatait!";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1103, 630);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBoxuser);
+            this.Controls.Add(this.textBoxpass);
             this.Controls.Add(this.mainPanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.mainPanel.ResumeLayout(false);
+            this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -208,6 +296,14 @@
         private System.Windows.Forms.Timer timerMercedes;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonMentes;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxuser;
+        private System.Windows.Forms.TextBox textBoxpass;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 
