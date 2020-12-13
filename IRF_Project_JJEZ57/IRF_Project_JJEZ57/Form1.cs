@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -241,6 +242,48 @@ namespace IRF_Project_JJEZ57
         {
             MercedesAdd();
             Keszletfrissites();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CreateTimer.Enabled = false;
+            timerWheel.Enabled = false;
+            timerMercedes.Enabled = false;
+            timerBmw.Enabled = false;
+            timerAudi.Enabled = false;
+
+        }
+
+        private void buttonMentes_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+
+            sfd.Filter = "Comma Seperated Values (*.csv)|*.csv";
+            sfd.DefaultExt = "csv";
+            sfd.AddExtension = true;
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+            using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+            {
+                sw.Write("Termek");
+                sw.Write(";");
+                sw.Write("Darab");
+                sw.Write(";");
+                sw.Write("Egységár");
+                sw.Write(";");
+                sw.Write("Összérték");
+                sw.WriteLine();
+                foreach (var g in context.Termek)
+                {
+                    sw.Write(g.Nev);
+                    sw.Write(";");
+                    sw.Write(g.Darab);
+                    sw.Write(";");
+                    sw.Write(g.Egységár);
+                    sw.Write(";");
+                    sw.Write(g.Darab*g.Egységár);
+                    sw.WriteLine();
+                }
+            }
         }
     }
 }
