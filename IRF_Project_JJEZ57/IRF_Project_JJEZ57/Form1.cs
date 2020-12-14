@@ -344,5 +344,13 @@ namespace IRF_Project_JJEZ57
 
             }
         }
+        public bool validatename( string name)
+        {
+            return Regex.IsMatch(name, "^[A-Za-z]{1,}(| [A-Za-z]{1,})$");
+        }
+        public bool validateazonosito(string azonosito)
+        {
+            return Regex.IsMatch(azonosito, "^[0-9]{4}$");
+        }
     }
 }
