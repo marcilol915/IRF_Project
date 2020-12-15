@@ -17,6 +17,11 @@ namespace IRF_Project_JJEZ57
     public partial class Form1 : Form
     {
         CarsEntities1 context = new CarsEntities1();
+        public class auto
+        {
+            public String nev { get; set; }
+            public int db { get; set; }
+        }
         private List<Toy> toys = new List<Toy>();
         public void Keszletfrissites()
         {
@@ -139,6 +144,19 @@ namespace IRF_Project_JJEZ57
             get { return _production; }
             set { _production = value; }
         }
+        public void Diagramfrissites()
+        {
+            var össz = from x in context.Termek
+                       group x by new { x.Nev } into g
+                       select new auto()
+                       {
+                           nev = g.Key.Nev,
+                           db = (int)((from x in g select x.Darab).Average())
+
+                       };
+            form1_autoBindingSource.DataSource = össz.ToList();
+            chart1.DataBind();
+        }
         public Form1()
         {
             InitializeComponent();
@@ -149,6 +167,7 @@ namespace IRF_Project_JJEZ57
             MoveTimer.Enabled = false;
             CreateTimer.Enabled = false;
             mainPanel.Visible = false;
+            Diagramfrissites();
         }
 
         private void CreateTimer_Tick(object sender, EventArgs e)
@@ -157,6 +176,7 @@ namespace IRF_Project_JJEZ57
             toys.Add(toy);
             toy.Left = -toy.Width;
             mainPanel.Controls.Add(toy);
+            Diagramfrissites();
         }
 
         private void MoveTimer_Tick(object sender, EventArgs e)
